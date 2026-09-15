@@ -16,7 +16,6 @@ def bar(value, maximum=100, size=18):
 
 
 def panel(buffer, x, y, width, height, title=""):
-
     for row in range(y, y + height):
         buffer.text(x, row, " " * width)
     buffer.box(x, y, width, height, "dim")
