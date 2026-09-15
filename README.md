@@ -1,19 +1,23 @@
 ﻿<div align="center">
 
 # FPS ASCII
+### FPS de sobrevivência com renderização ASCII
 
-### FPS de sobrevivência em Python com estética de terminal
+Sobreviva a uma LAN house de 2001 enquanto enfrenta ameaças digitais em um mundo renderizado com caracteres.
 
-Um jogo em primeira pessoa ambientado em uma LAN house de 2001,  
-renderizado inteiramente com caracteres ASCII.
+![Python](https://img.shields.io/badge/Python-238636?style=for-the-badge&logo=python&logoColor=white)
+![Pygame](https://img.shields.io/badge/Pygame-0a0a0a?style=for-the-badge&logo=pygame&logoColor=238636)
+![Raycasting](https://img.shields.io/badge/Raycasting-238636?style=for-the-badge&logo=target&logoColor=white)
+![ASCII](https://img.shields.io/badge/ASCII-0a0a0a?style=for-the-badge&logo=windowsterminal&logoColor=238636)
 
 <br>
 
-![Python](https://img.shields.io/badge/Python-238636?style=for-the-badge&logo=python&logoColor=white)
-![pygame-ce](https://img.shields.io/badge/pygame--ce-238636?style=for-the-badge&logo=pygame&logoColor=white)
-![Raycasting](https://img.shields.io/badge/Raycasting-238636?style=for-the-badge)
-![ASCII](https://img.shields.io/badge/ASCII-238636?style=for-the-badge&logo=windowsterminal&logoColor=white)
-![Git](https://img.shields.io/badge/Git-238636?style=for-the-badge&logo=git&logoColor=white)
+<img
+    src="docs/menu.png"
+    alt="FPS ASCII"
+    width="100%">
+
+<br>
 
 </div>
 
@@ -21,66 +25,57 @@ renderizado inteiramente com caracteres ASCII.
 
 ## Sobre o projeto
 
-**FPS ASCII** é um FPS de sobrevivência desenvolvido em Python utilizando `pygame-ce`.
+O **FPS ASCII** é um jogo de tiro em primeira pessoa desenvolvido em Python utilizando `pygame-ce`.
 
-O jogo se passa em uma LAN house no ano de **2001** e possui uma estética inspirada em terminais e computadores antigos.
+O jogo é ambientado em uma LAN house no ano de **2001** e possui uma estética inspirada em terminais e computadores antigos.
 
-Paredes, chão, teto, computadores, inimigos, armas, HUD e menus são representados utilizando caracteres ASCII.
+O cenário é construído utilizando caracteres ASCII e a perspectiva em primeira pessoa é gerada através de um sistema de **raycasting DDA**.
 
-A sensação de profundidade é criada através de um sistema de **raycasting DDA**, sem utilização de sprites tradicionais para construir o cenário.
-
-O projeto foi desenvolvido com o objetivo de praticar conceitos de:
-
-- Programação Orientada a Objetos;
-- Organização de projetos Python;
-- Raycasting;
-- Matemática aplicada a jogos;
-- Colisão;
-- Inteligência de inimigos;
-- Gerenciamento de estados;
-- Renderização;
-- Testes automatizados.
+O jogador precisa sobreviver a diferentes ondas de inimigos, administrar vida, energia, munição e utilizar diferentes armas para continuar avançando.
 
 ---
 
-## Demonstração
+## Como funciona
 
-<div align="center">
+A partida é baseada em ondas progressivas:
 
-![FPS ASCII](docs/demo.png)
+```text
+EXPLORAÇÃO → COMBATE → NOVA ONDA → BOSS
+```
 
-</div>
+A cada nova onda:
+
+- Mais inimigos aparecem;
+- Os inimigos ficam mais resistentes;
+- A dificuldade aumenta;
+- Novos desafios são apresentados;
+- Chefes surgem periodicamente.
+
+O objetivo é sobreviver pelo maior número possível de ondas.
 
 ---
 
-## Principais funcionalidades
+## Renderização ASCII
 
-- Renderização de cenário utilizando caracteres ASCII;
-- Raycasting DDA;
-- Sistema de profundidade e oclusão;
-- Diferentes tipos de inimigos;
-- IA com navegação pelo mapa;
-- Sistema progressivo de ondas;
-- Chefes especiais;
-- Diferentes armas;
-- Sistema de munição;
-- Recarga;
-- Corrida;
-- Pulo;
-- Agachamento;
-- Slide;
-- Sistema de energia;
-- Minimap;
-- HUD;
-- Diferentes paletas de cores;
-- Scanlines;
-- Sons sintetizados pelo próprio jogo;
-- Menus;
-- Pausa automática;
-- Tela cheia;
-- Modo headless;
-- Modo de demonstração;
-- Testes automatizados.
+O jogo não utiliza sprites tradicionais para construir o cenário.
+
+A visão em primeira pessoa é gerada através de **raycasting**, calculando a distância entre o jogador e as paredes do mapa.
+
+```text
+PLAYER
+   \
+    \
+     \
+      \
+       █
+       █
+       █
+       █
+```
+
+A distância encontrada por cada raio determina a altura da parede exibida na tela.
+
+O sistema também utiliza informações de profundidade para impedir que inimigos sejam renderizados através de paredes.
 
 ---
 
@@ -88,70 +83,153 @@ O projeto foi desenvolvido com o objetivo de praticar conceitos de:
 
 ### ILOVEYOU
 
-Persegue o jogador e realiza ataques de curta distância.
+Inimigo focado em perseguição e ataques próximos ao jogador.
 
 ### WannaCry
 
-Ao ser derrotado pode gerar novos inimigos, criando pressão durante as ondas.
+Pode criar novas ameaças durante o combate, aumentando a pressão durante as ondas.
 
 ### Mydoom
 
-Ataca à distância utilizando projéteis que respeitam paredes e obstáculos.
+Possui ataques à distância utilizando projéteis.
 
 ### Boss
 
-A cada três ondas surge um chefe mais resistente, com ataques próprios e maior quantidade de vida.
+Chefes especiais aparecem durante a progressão e possuem:
+
+- Mais vida;
+- Maior resistência;
+- Ataques próprios;
+- Maior dificuldade.
 
 ---
 
 ## Armas
 
-| Arma | Característica |
-|---|---|
-| Pistol | Arma inicial com boa quantidade de munição |
-| Rifle | Disparo automático |
-| Shotgun | Alto dano a curta distância |
-| Sniper | Alto dano e modo de mira |
-| Sword | Ataque corpo a corpo sem munição |
+O jogador possui diferentes opções de combate:
+
+```text
+1 → Pistol
+2 → Rifle
+3 → Shotgun
+4 → Sniper
+5 → Sword
+```
+
+Cada arma possui características diferentes de:
+
+- Dano;
+- Alcance;
+- Cadência;
+- Quantidade de munição;
+- Tempo de recarga.
+
+A espada permite ataques corpo a corpo sem consumir munição.
+
+---
+
+## Movimentação
+
+Além da movimentação tradicional de FPS, o jogador pode:
+
+- Correr;
+- Pular;
+- Agachar;
+- Realizar slide;
+- Controlar a direção utilizando o mouse;
+- Utilizar energia durante determinadas ações.
+
+---
+
+## Principais funcionalidades
+
+- FPS em primeira pessoa;
+- Renderização utilizando caracteres ASCII;
+- Raycasting DDA;
+- Sistema de profundidade;
+- Diferentes tipos de inimigos;
+- IA de perseguição;
+- Ataques à distância;
+- Sistema progressivo de ondas;
+- Chefes;
+- Sistema de vida;
+- Sistema de energia;
+- Corrida;
+- Pulo;
+- Agachamento;
+- Slide;
+- Diferentes armas;
+- Sistema de munição;
+- Recarga;
+- Minimap;
+- HUD;
+- Paletas de cores;
+- Scanlines;
+- Efeitos sonoros;
+- Menus;
+- Sistema de pausa;
+- Tela cheia;
+- Modo headless;
+- Modo de demonstração;
+- Testes automatizados.
 
 ---
 
 ## Controles
 
-| Ação | Tecla |
+| Ação | Controle |
 |---|---|
 | Movimento | `W A S D` |
-| Girar pelo teclado | `← →` |
 | Olhar | `Mouse` |
+| Girar | `← →` |
 | Olhar verticalmente | `Page Up / Page Down` |
-| Atirar | `Botão esquerdo / F` |
-| Mira da Sniper | `Botão direito / Q` |
+| Atirar | `Mouse esquerdo / F` |
+| Mira da Sniper | `Mouse direito / Q` |
 | Trocar arma | `1 - 5 / Scroll` |
 | Recarregar | `R` |
 | Correr | `Shift` |
 | Pular | `Espaço` |
 | Agachar / Slide | `Ctrl / C` |
-| Mostrar mapa | `Tab` |
+| Mapa | `Tab` |
 | Pausar | `Esc` |
 | Ajuda | `F1` |
-| Alterar paleta | `F2` |
+| Paleta | `F2` |
 | Scanlines | `F3` |
 | Som | `F4` |
 | Tela cheia | `F11` |
-| Sensibilidade | `- / =` |
 
 ---
 
-## Tecnologias
+## Tecnologias utilizadas
 
 <div align="center">
 
 ![Python](https://img.shields.io/badge/Python-238636?style=for-the-badge&logo=python&logoColor=white)
-![pygame](https://img.shields.io/badge/pygame--ce-238636?style=for-the-badge&logo=pygame&logoColor=white)
+![Pygame](https://img.shields.io/badge/Pygame-0a0a0a?style=for-the-badge&logo=pygame&logoColor=238636)
 ![Git](https://img.shields.io/badge/Git-238636?style=for-the-badge&logo=git&logoColor=white)
-![GitHub](https://img.shields.io/badge/GitHub-238636?style=for-the-badge&logo=github&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-0a0a0a?style=for-the-badge&logo=github&logoColor=238636)
 
 </div>
+
+### Desenvolvimento
+
+- Python;
+- pygame-ce;
+- Programação Orientada a Objetos.
+
+### Engine
+
+- Raycasting DDA;
+- Buffer ASCII;
+- Controle de profundidade;
+- Colisões;
+- Navegação em mapas.
+
+### Qualidade
+
+- Testes automatizados;
+- Git;
+- GitHub.
 
 ---
 
@@ -188,69 +266,29 @@ FPS/
 └── README.md
 ```
 
----
+### Responsabilidade dos arquivos
 
-## Organização do código
-
-| Arquivo | Responsabilidade |
-|---|---|
-| `app.py` | Janela, eventos, menus, pausa e loop principal |
-| `game.py` | Integração da lógica e estados do jogo |
-| `engine/raycaster.py` | Raycasting DDA e projeção do cenário |
-| `engine/buffer.py` | Renderização e gerenciamento dos caracteres ASCII |
-| `player.py` | Movimento, colisão, vida, energia, pulo e slide |
-| `weapons.py` | Armas, disparos, munição e recarga |
-| `enemies.py` | IA, ataques, projéteis e chefes |
-| `waves.py` | Progressão das ondas |
-| `maps.py` | Construção do mapa e navegação |
-| `ui/hud.py` | HUD, minimapa e menus |
-| `audio.py` | Efeitos sonoros |
-| `tests/` | Testes da lógica e renderização |
-
----
-
-## Raycasting
-
-A renderização utiliza o algoritmo **DDA (Digital Differential Analyzer)** para lançar raios a partir da posição do jogador.
-
-Cada raio percorre o mapa até encontrar uma parede.
-
-A distância encontrada é utilizada para calcular a altura da parede projetada na tela.
-
-```text
-PLAYER
-   \
-    \
-     \
-      \       █
-       \      █
-        \     █
-         \    █
-          \   █
-           \  █
-            \ █
-             \█
-```
-
-O sistema também utiliza um buffer de profundidade para impedir que inimigos ou outros elementos sejam renderizados através das paredes.
+- `app.py`: janela, eventos, menus e loop principal;
+- `game.py`: controle e integração da partida;
+- `player.py`: movimentação, vida, energia e colisões;
+- `weapons.py`: armas, munição, disparos e recarga;
+- `enemies.py`: inimigos, IA e ataques;
+- `waves.py`: progressão das ondas;
+- `maps.py`: estrutura e navegação dos mapas;
+- `engine/raycaster.py`: raycasting e projeção do cenário;
+- `engine/buffer.py`: buffer e renderização ASCII;
+- `ui/hud.py`: HUD, minimapa e interface;
+- `audio.py`: efeitos sonoros;
+- `tests/`: testes automatizados.
 
 ---
 
 ## Como executar
 
-### Requisitos
-
-- Python 3.10 ou superior
-
-### 1. Clone o projeto
+### 1. Clone o repositório
 
 ```bash
 git clone https://github.com/DutraBrun0/FPS.git
-```
-
-Entre na pasta:
-
-```bash
 cd FPS
 ```
 
@@ -260,12 +298,18 @@ cd FPS
 python -m venv .venv
 ```
 
-### 3. Ative o ambiente
+### 3. Ative o ambiente virtual
 
 No Windows:
 
 ```bash
 .venv\Scripts\activate
+```
+
+No Linux ou macOS:
+
+```bash
+source .venv/bin/activate
 ```
 
 ### 4. Instale as dependências
@@ -274,7 +318,7 @@ No Windows:
 pip install -r requirements.txt
 ```
 
-### 5. Execute
+### 5. Inicie o jogo
 
 ```bash
 python -m fps_ascii
@@ -286,7 +330,7 @@ Também é possível executar:
 python jogar.py
 ```
 
-No Windows, outra opção é executar:
+No Windows:
 
 ```text
 iniciar_fps.bat
@@ -296,19 +340,19 @@ iniciar_fps.bat
 
 ## Configurações
 
-### Alterar paleta
+Executar utilizando outra paleta:
 
 ```bash
 python -m fps_ascii --palette amber
 ```
 
-### Executar sem áudio
+Executar sem áudio:
 
 ```bash
 python -m fps_ascii --no-audio
 ```
 
-### Alterar resolução
+Alterar resolução:
 
 ```bash
 python -m fps_ascii --size 1440x900
@@ -316,21 +360,21 @@ python -m fps_ascii --size 1440x900
 
 ---
 
-## Testes
+## Testes automatizados
 
-Execute todos os testes com:
+Para executar os testes:
 
 ```bash
 python -B -m unittest discover -s tests -v
 ```
 
-Também existe um modo **headless**, que permite executar o jogo sem abrir uma janela:
+O projeto também possui um modo **headless**, permitindo executar a simulação sem abrir a janela:
 
 ```bash
 python -B -m fps_ascii --headless --demo --frames 360 --no-audio
 ```
 
-É possível gerar uma captura automaticamente:
+Para gerar uma imagem de demonstração:
 
 ```bash
 python -B -m fps_ascii --headless --demo --frames 180 --screenshot docs/demo.png
@@ -338,54 +382,45 @@ python -B -m fps_ascii --headless --demo --frames 180 --screenshot docs/demo.png
 
 ---
 
-## O que aprendi
+## Objetivo
 
-Durante o desenvolvimento deste projeto pude praticar:
+Este projeto foi desenvolvido para praticar:
 
-- Estruturação de projetos Python;
+- Organização de projetos Python;
 - Programação Orientada a Objetos;
-- Game loops;
-- Controle de tempo e FPS;
-- Vetores e trigonometria;
+- Matemática aplicada a jogos;
 - Raycasting;
+- Trigonometria;
+- Game loops;
+- Controle de tempo;
 - Colisões;
-- Inteligência artificial básica;
-- Navegação em mapas;
+- Inteligência artificial;
 - Gerenciamento de estados;
-- Testes automatizados;
+- Testes;
 - Git e GitHub.
 
 ---
 
 ## Desenvolvimento com auxílio de IA
 
-<div align="center">
+O projeto foi desenvolvido por **Bruno Dutra com auxílio do OpenAI Codex**.
 
-![OpenAI Codex](https://img.shields.io/badge/OpenAI_Codex-238636?style=for-the-badge&logo=openai&logoColor=white)
+O Codex foi utilizado como ferramenta de apoio durante partes do processo de implementação, revisão, organização e depuração do código.
 
-</div>
-
-O projeto foi desenvolvido por **Bruno Dutra com auxílio do OpenAI Codex** durante partes do processo de implementação, revisão, depuração e organização do código.
-
-A ferramenta foi utilizada como apoio durante o desenvolvimento, enquanto o projeto também serviu como forma de estudo dos conceitos e implementações utilizadas.
+O desenvolvimento do projeto também foi utilizado como forma de estudo e prática dos conceitos implementados.
 
 ---
 
 ## Autor
 
-<div align="center">
+Desenvolvido por **Bruno Dutra**.
 
-### Bruno Dutra
-
-[![GitHub](https://img.shields.io/badge/GitHub-238636?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DutraBrun0)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-238636?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/brunodutraaa/)
-
-</div>
+[GitHub](https://github.com/DutraBrun0) • [LinkedIn](https://www.linkedin.com/in/brunodutraaa/)
 
 ---
 
 <div align="center">
 
-`FPS ASCII — sobreviva à LAN house de 2001.`
+**FPS ASCII — sobreviva à LAN house de 2001.**
 
 </div>
