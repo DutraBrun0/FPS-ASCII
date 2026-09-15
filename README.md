@@ -1,139 +1,391 @@
-﻿# FPS ASCII
+﻿<div align="center">
 
-FPS de sobrevivência em Python ambientado em uma LAN house de 2001.
-Paredes, chão, teto, monitores CRT, inimigos, armas e menus são desenhados
-com caracteres ASCII. O pygame-ce abre a janela e desenha os glifos;
-não há imagens de cenário nem sprites gráficos.
+# FPS ASCII
 
-## Jogar no Windows
+### FPS de sobrevivência em Python com estética de terminal
 
-Dê dois cliques em **iniciar_fps.bat**, ou execute no terminal desta pasta:
+Um jogo em primeira pessoa ambientado em uma LAN house de 2001,  
+renderizado inteiramente com caracteres ASCII.
 
-```powershell
-.\.venv\Scripts\python.exe -m fps_ascii
-```
+<br>
 
-O arquivo **jogar.py** também inicia o jogo pelo editor. Selecione o
-interpretador `.venv\Scripts\python.exe` no VS Code.
+![Python](https://img.shields.io/badge/Python-238636?style=for-the-badge&logo=python&logoColor=white)
+![pygame-ce](https://img.shields.io/badge/pygame--ce-238636?style=for-the-badge&logo=pygame&logoColor=white)
+![Raycasting](https://img.shields.io/badge/Raycasting-238636?style=for-the-badge)
+![ASCII](https://img.shields.io/badge/ASCII-238636?style=for-the-badge&logo=windowsterminal&logoColor=white)
+![Git](https://img.shields.io/badge/Git-238636?style=for-the-badge&logo=git&logoColor=white)
 
-Para instalar em outra máquina (Python 3.10 ou superior):
+</div>
 
-```powershell
-python -m venv .venv
-.\.venv\Scripts\python.exe -m pip install -r requirements.txt
-.\.venv\Scripts\python.exe -m fps_ascii
-```
+---
 
-Linux/macOS: use `python3 -m venv .venv` e substitua o executável
-por `.venv/bin/python`. Essa execução foi validada no Windows com Python 3.13;
-os outros sistemas não foram testados.
+## Sobre o projeto
+
+**FPS ASCII** é um FPS de sobrevivência desenvolvido em Python utilizando `pygame-ce`.
+
+O jogo se passa em uma LAN house no ano de **2001** e possui uma estética inspirada em terminais e computadores antigos.
+
+Paredes, chão, teto, computadores, inimigos, armas, HUD e menus são representados utilizando caracteres ASCII.
+
+A sensação de profundidade é criada através de um sistema de **raycasting DDA**, sem utilização de sprites tradicionais para construir o cenário.
+
+O projeto foi desenvolvido com o objetivo de praticar conceitos de:
+
+- Programação Orientada a Objetos;
+- Organização de projetos Python;
+- Raycasting;
+- Matemática aplicada a jogos;
+- Colisão;
+- Inteligência de inimigos;
+- Gerenciamento de estados;
+- Renderização;
+- Testes automatizados.
+
+---
+
+## Demonstração
+
+<div align="center">
+
+![FPS ASCII](docs/demo.png)
+
+</div>
+
+---
+
+## Principais funcionalidades
+
+- Renderização de cenário utilizando caracteres ASCII;
+- Raycasting DDA;
+- Sistema de profundidade e oclusão;
+- Diferentes tipos de inimigos;
+- IA com navegação pelo mapa;
+- Sistema progressivo de ondas;
+- Chefes especiais;
+- Diferentes armas;
+- Sistema de munição;
+- Recarga;
+- Corrida;
+- Pulo;
+- Agachamento;
+- Slide;
+- Sistema de energia;
+- Minimap;
+- HUD;
+- Diferentes paletas de cores;
+- Scanlines;
+- Sons sintetizados pelo próprio jogo;
+- Menus;
+- Pausa automática;
+- Tela cheia;
+- Modo headless;
+- Modo de demonstração;
+- Testes automatizados.
+
+---
+
+## Inimigos
+
+### ILOVEYOU
+
+Persegue o jogador e realiza ataques de curta distância.
+
+### WannaCry
+
+Ao ser derrotado pode gerar novos inimigos, criando pressão durante as ondas.
+
+### Mydoom
+
+Ataca à distância utilizando projéteis que respeitam paredes e obstáculos.
+
+### Boss
+
+A cada três ondas surge um chefe mais resistente, com ataques próprios e maior quantidade de vida.
+
+---
+
+## Armas
+
+| Arma | Característica |
+|---|---|
+| Pistol | Arma inicial com boa quantidade de munição |
+| Rifle | Disparo automático |
+| Shotgun | Alto dano a curta distância |
+| Sniper | Alto dano e modo de mira |
+| Sword | Ataque corpo a corpo sem munição |
+
+---
 
 ## Controles
 
 | Ação | Tecla |
-| --- | --- |
-| Mover / deslocar de lado | W A S D |
-| Mover / virar pelo teclado | Setas |
-| Olhar | Mouse; Page Up/Down para olhar na vertical pelo teclado |
-| Disparar | Botão esquerdo ou F |
-| Mira da Sniper | Segurar botão direito ou Q |
-| Trocar arma | 1–5 ou roda do mouse |
-| Recarregar | R |
-| Correr | Shift + movimento para frente |
-| Pular | Espaço |
-| Agachar / iniciar slide em movimento | Ctrl ou C |
-| Mostrar mapa | Tab |
-| Pausar / liberar o mouse | Esc |
-| Ajuda | F1 |
-| Alternar verde, âmbar e gelo | F2 |
-| Scanlines | F3 |
-| Ativar / desativar som | F4 |
-| Tela cheia | F11 |
-| Sensibilidade do mouse | - / = |
-| Navegar no menu | W/S ou setas; Enter confirma |
+|---|---|
+| Movimento | `W A S D` |
+| Girar pelo teclado | `← →` |
+| Olhar | `Mouse` |
+| Olhar verticalmente | `Page Up / Page Down` |
+| Atirar | `Botão esquerdo / F` |
+| Mira da Sniper | `Botão direito / Q` |
+| Trocar arma | `1 - 5 / Scroll` |
+| Recarregar | `R` |
+| Correr | `Shift` |
+| Pular | `Espaço` |
+| Agachar / Slide | `Ctrl / C` |
+| Mostrar mapa | `Tab` |
+| Pausar | `Esc` |
+| Ajuda | `F1` |
+| Alterar paleta | `F2` |
+| Scanlines | `F3` |
+| Som | `F4` |
+| Tela cheia | `F11` |
+| Sensibilidade | `- / =` |
 
-O mouse fica capturado durante a partida. Esc libera o cursor.
-Ao perder o foco da janela, o jogo pausa automaticamente.
+---
 
-## Sobrevivência
+## Tecnologias
 
-Todas as armas estão disponíveis desde o início. A Pistol tem bastante
-munição; Rifle, Shotgun e Sniper exigem gerenciamento de carregador e reserva.
-O Rifle dispara continuamente ao segurar o botão. As outras armas disparam
-uma vez por clique. A Sword funciona sem munição.
+<div align="center">
 
-- **ILOVEYOU** corre atrás do jogador e ataca de perto.
-- **WannaCry** gera descendentes ao morrer; a multiplicação é limitada.
-- **Mydoom** lança projéteis que respeitam as paredes.
-- A cada **três ondas** surge um chefe com mais vida e ataques anunciados.
-- A quantidade, a resistência e a velocidade dos inimigos aumentam.
-- Limpar a onda concede recuperação e munição antes da próxima.
-- Corrida, pulo e slide gastam energia. Ela se recupera ao descansar.
-- Pulo e agachamento alteram a altura do jogador e a exposição a projéteis.
+![Python](https://img.shields.io/badge/Python-238636?style=for-the-badge&logo=python&logoColor=white)
+![pygame](https://img.shields.io/badge/pygame--ce-238636?style=for-the-badge&logo=pygame&logoColor=white)
+![Git](https://img.shields.io/badge/Git-238636?style=for-the-badge&logo=git&logoColor=white)
+![GitHub](https://img.shields.io/badge/GitHub-238636?style=for-the-badge&logo=github&logoColor=white)
 
-O mapa é conectado e os inimigos usam navegação em grade para contornar PCs
-e paredes. O minimapa marca o jogador, inimigos e chefes.
+</div>
 
-## Organização
+---
 
-| Arquivo | Responsabilidade |
-| --- | --- |
-| `fps_ascii/app.py` | Janela, eventos, pausa, menus e loop |
-| `fps_ascii/game.py` | Integração da simulação, mensagens e feedback |
-| `fps_ascii/engine/raycaster.py` | Raycasting DDA, piso/teto e projeção com oclusão |
-| `fps_ascii/engine/buffer.py` | Grade ASCII, paletas e cache de glifos |
-| `fps_ascii/player.py` | Colisão, movimento, pulo, slide, vida e energia |
-| `fps_ascii/weapons.py` | Estatísticas, tiros, recargas e desenhos das armas |
-| `fps_ascii/enemies.py` | IA, ataques, projéteis, divisão e chefes |
-| `fps_ascii/waves.py` | Progressão, intervalo e recompensas |
-| `fps_ascii/maps.py` | LAN house, decoração, colisão, raycast e navegação |
-| `fps_ascii/ui/hud.py` | HUD, mira, minimapa, menus e manual |
-| `fps_ascii/audio.py` | Efeitos sonoros sintetizados, sem arquivos externos |
-| `tests/` | Testes de simulação, renderização e integração |
+## Estrutura do projeto
 
-A simulação usa passos fixos de 1/120 s, com renderização limitada a 60 FPS.
-A grade padrão contém 160 × 60 células. Os raios usam o plano da câmera para
-evitar distorção de olho de peixe. As paredes usam o gradiente
-` .:-=+*#%@`, iluminação direcional e detalhes de terminal. Um buffer de
-profundidade oculta sprites atrás das paredes. O desenho de caracteres usa
-um cache por glifo/cor e blits em lote.
-
-As scanlines são variações na luminosidade das linhas de texto.
-Os únicos preenchimentos gráficos são o fundo preto e as superfícies
-internas usadas para armazenar os glifos.
-
-## Configuração e testes
-
-```powershell
-# Paleta âmbar, sem som
-.\.venv\Scripts\python.exe -m fps_ascii --palette amber --no-audio
-
-# Outra resolução
-.\.venv\Scripts\python.exe -m fps_ascii --size 1440x900
-
-# Todos os testes, sem janela e sem pacotes adicionais de teste
-.\.venv\Scripts\python.exe -B -m unittest discover -s tests -v
-
-# Loop completo em SDL virtual; sem abrir janela
-.\.venv\Scripts\python.exe -B -m fps_ascii --headless --demo --frames 360 --no-audio
-
-# Salvar a última tela para inspeção
-.\.venv\Scripts\python.exe -B -m fps_ascii --headless --demo --frames 180 --screenshot docs/demo.png
+```text
+FPS/
+│
+├── fps_ascii/
+│   │
+│   ├── engine/
+│   │   ├── buffer.py
+│   │   └── raycaster.py
+│   │
+│   ├── ui/
+│   │   └── hud.py
+│   │
+│   ├── __main__.py
+│   ├── app.py
+│   ├── audio.py
+│   ├── enemies.py
+│   ├── game.py
+│   ├── maps.py
+│   ├── player.py
+│   ├── weapons.py
+│   └── waves.py
+│
+├── tests/
+├── docs/
+│
+├── jogar.py
+├── iniciar_fps.bat
+├── requirements.txt
+└── README.md
 ```
 
-`--demo` controla mira/disparo automaticamente e restaura a vida para permitir
-verificações repetíveis; esse auxílio fica restrito ao modo de demonstração.
-`--headless` usa tempo simulado de 1/60 s por frame e encerra após 180 frames
-por padrão. A captura em PNG é uma saída de depuração, não um recurso gráfico
-carregado pelo jogo.
+---
 
-Para balancear armas, altere suas definições em `weapons.py`; para ajustar
-vida/velocidade/comportamento de inimigos, use `enemies.py`; as recompensas
-e pausas ficam em `waves.py`. Novos mapas devem preservar portas largas,
-pontos de surgimento livres e conectividade.
+## Organização do código
 
-## Referências técnicas
+| Arquivo | Responsabilidade |
+|---|---|
+| `app.py` | Janela, eventos, menus, pausa e loop principal |
+| `game.py` | Integração da lógica e estados do jogo |
+| `engine/raycaster.py` | Raycasting DDA e projeção do cenário |
+| `engine/buffer.py` | Renderização e gerenciamento dos caracteres ASCII |
+| `player.py` | Movimento, colisão, vida, energia, pulo e slide |
+| `weapons.py` | Armas, disparos, munição e recarga |
+| `enemies.py` | IA, ataques, projéteis e chefes |
+| `waves.py` | Progressão das ondas |
+| `maps.py` | Construção do mapa e navegação |
+| `ui/hud.py` | HUD, minimapa e menus |
+| `audio.py` | Efeitos sonoros |
+| `tests/` | Testes da lógica e renderização |
 
-- [pygame-ce: mouse e captura de entrada](https://pyga.me/docs/ref/mouse.html)
-- [pygame-ce: renderização de fontes](https://pyga.me/docs/ref/font.html)
+---
 
+## Raycasting
+
+A renderização utiliza o algoritmo **DDA (Digital Differential Analyzer)** para lançar raios a partir da posição do jogador.
+
+Cada raio percorre o mapa até encontrar uma parede.
+
+A distância encontrada é utilizada para calcular a altura da parede projetada na tela.
+
+```text
+PLAYER
+   \
+    \
+     \
+      \       █
+       \      █
+        \     █
+         \    █
+          \   █
+           \  █
+            \ █
+             \█
+```
+
+O sistema também utiliza um buffer de profundidade para impedir que inimigos ou outros elementos sejam renderizados através das paredes.
+
+---
+
+## Como executar
+
+### Requisitos
+
+- Python 3.10 ou superior
+
+### 1. Clone o projeto
+
+```bash
+git clone https://github.com/DutraBrun0/FPS.git
+```
+
+Entre na pasta:
+
+```bash
+cd FPS
+```
+
+### 2. Crie o ambiente virtual
+
+```bash
+python -m venv .venv
+```
+
+### 3. Ative o ambiente
+
+No Windows:
+
+```bash
+.venv\Scripts\activate
+```
+
+### 4. Instale as dependências
+
+```bash
+pip install -r requirements.txt
+```
+
+### 5. Execute
+
+```bash
+python -m fps_ascii
+```
+
+Também é possível executar:
+
+```bash
+python jogar.py
+```
+
+No Windows, outra opção é executar:
+
+```text
+iniciar_fps.bat
+```
+
+---
+
+## Configurações
+
+### Alterar paleta
+
+```bash
+python -m fps_ascii --palette amber
+```
+
+### Executar sem áudio
+
+```bash
+python -m fps_ascii --no-audio
+```
+
+### Alterar resolução
+
+```bash
+python -m fps_ascii --size 1440x900
+```
+
+---
+
+## Testes
+
+Execute todos os testes com:
+
+```bash
+python -B -m unittest discover -s tests -v
+```
+
+Também existe um modo **headless**, que permite executar o jogo sem abrir uma janela:
+
+```bash
+python -B -m fps_ascii --headless --demo --frames 360 --no-audio
+```
+
+É possível gerar uma captura automaticamente:
+
+```bash
+python -B -m fps_ascii --headless --demo --frames 180 --screenshot docs/demo.png
+```
+
+---
+
+## O que aprendi
+
+Durante o desenvolvimento deste projeto pude praticar:
+
+- Estruturação de projetos Python;
+- Programação Orientada a Objetos;
+- Game loops;
+- Controle de tempo e FPS;
+- Vetores e trigonometria;
+- Raycasting;
+- Colisões;
+- Inteligência artificial básica;
+- Navegação em mapas;
+- Gerenciamento de estados;
+- Testes automatizados;
+- Git e GitHub.
+
+---
+
+## Desenvolvimento com auxílio de IA
+
+<div align="center">
+
+![OpenAI Codex](https://img.shields.io/badge/OpenAI_Codex-238636?style=for-the-badge&logo=openai&logoColor=white)
+
+</div>
+
+O projeto foi desenvolvido por **Bruno Dutra com auxílio do OpenAI Codex** durante partes do processo de implementação, revisão, depuração e organização do código.
+
+A ferramenta foi utilizada como apoio durante o desenvolvimento, enquanto o projeto também serviu como forma de estudo dos conceitos e implementações utilizadas.
+
+---
+
+## Autor
+
+<div align="center">
+
+### Bruno Dutra
+
+[![GitHub](https://img.shields.io/badge/GitHub-238636?style=for-the-badge&logo=github&logoColor=white)](https://github.com/DutraBrun0)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-238636?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/brunodutraaa/)
+
+</div>
+
+---
+
+<div align="center">
+
+`FPS ASCII — sobreviva à LAN house de 2001.`
+
+</div>
